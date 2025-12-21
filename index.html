@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Stylionix – Professional Salon Management App</title>
+<meta name="description" content="Stylionix is a professional salon management app for barbers and hair salons. Available in English, French, Arabic, Spanish, Chinese and Hindi.">
+
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+:root{
+--primary:#0f1023;
+--accent:#e94560;
+--bg:#f6f7fb;
+--white:#ffffff;
+--dark:#1a1a1a;
+--muted:#6b7280;
+}
+
+*{box-sizing:border-box}
+body{
+margin:0;
+font-family:'Inter',sans-serif;
+background:var(--bg);
+color:var(--dark);
+line-height:1.6;
+}
+
+img{max-width:100%;display:block}
+
+/* ===== HEADER ===== */
+header{
+position:fixed;
+top:0;
+width:100%;
+background:rgba(15,16,35,.95);
+backdrop-filter:blur(10px);
+z-index:1000;
+}
+.container{
+width:90%;
+max-width:1200px;
+margin:auto;
+}
+.header-inner{
+display:flex;
+justify-content:center;
+align-items:center;
+padding:18px 0;
+}
+.logo{
+display:flex;
+align-items:center;
+gap:14px;
+color:#fff;
+text-decoration:none;
+font-family:'Bebas Neue',sans-serif;
+font-size:30px;
+letter-spacing:2px;
+}
+.logo img{height:52px}
+
+/* ===== BUTTONS ===== */
+.btn{
+display:inline-flex;
+align-items:center;
+gap:12px;
+padding:15px 30px;
+border-radius:999px;
+font-weight:700;
+font-size:14px;
+text-decoration:none;
+transition:.25s;
+}
+.btn-primary{background:var(--accent);color:#fff}
+.btn-secondary{background:#000;color:#fff}
+.btn:hover{transform:translateY(-3px)}
+.google-play i{color:#34a853}
+
+/* ===== HERO ===== */
+.hero{
+padding:160px 0 100px;
+background:linear-gradient(135deg,#0f1023,#2c1a4d);
+color:#fff;
+}
+.hero-grid{
+display:grid;
+grid-template-columns:1.2fr 1fr;
+gap:50px;
+align-items:center;
+}
+.hero h1{
+font-family:'Bebas Neue',sans-serif;
+font-size:clamp(44px,6vw,72px);
+line-height:1;
+margin-bottom:20px;
+}
+.hero h1 span{color:var(--accent)}
+.hero p{
+font-size:18px;
+color:#e5e7eb;
+max-width:520px;
+}
+.hero-actions{
+margin-top:30px;
+display:flex;
+gap:15px;
+flex-wrap:wrap;
+}
+.hero-phone img{
+max-width:300px;
+border-radius:32px;
+border:8px solid #111;
+box-shadow:0 30px 80px rgba(0,0,0,.6);
+transform:rotate(-4deg);
+}
+
+/* ===== LANGUAGES ===== */
+.languages{
+background:#fff;
+padding:80px 0;
+text-align:center;
+}
+.languages h2{
+font-family:'Bebas Neue',sans-serif;
+font-size:44px;
+margin-bottom:10px;
+}
+.languages p{
+color:var(--muted);
+margin-bottom:30px;
+}
+.language-list{
+display:flex;
+flex-wrap:wrap;
+justify-content:center;
+gap:15px;
+}
+.language-list span{
+background:#f3f4f6;
+padding:12px 22px;
+border-radius:30px;
+font-weight:600;
+box-shadow:0 6px 18px rgba(0,0,0,.06);
+}
+
+/* ===== FEATURES ===== */
+.features{
+padding:90px 0;
+background:#fff;
+}
+.features-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+gap:35px;
+}
+.feature{
+background:#fff;
+padding:35px;
+border-radius:22px;
+box-shadow:0 12px 35px rgba(0,0,0,.08);
+border-top:5px solid var(--accent);
+}
+.feature i{
+font-size:36px;
+color:var(--accent);
+margin-bottom:15px;
+}
+
+/* ===== GALLERY ===== */
+.gallery{
+background:#eef0f6;
+padding:90px 0;
+}
+.gallery-grid{
+display:flex;
+gap:18px;
+overflow-x:auto;
+padding-bottom:10px;
+}
+.gallery-grid::-webkit-scrollbar{display:none}
+.gallery-item{
+flex:0 0 210px;
+border-radius:18px;
+overflow:hidden;
+box-shadow:0 15px 40px rgba(0,0,0,.15);
+}
+
+/* ===== FINAL CTA ===== */
+.final-cta{
+background:linear-gradient(135deg,#0f1023,#3b1d60);
+color:#fff;
+padding:100px 0;
+text-align:center;
+}
+.final-cta h2{
+font-family:'Bebas Neue',sans-serif;
+font-size:54px;
+margin-bottom:20px;
+}
+
+/* ===== FOOTER ===== */
+footer{
+background:#0a0a14;
+color:#9ca3af;
+padding:25px 0;
+text-align:center;
+font-size:13px;
+}
+
+/* ===== RESPONSIVE ===== */
+@media(max-width:900px){
+.hero-grid{grid-template-columns:1fr;text-align:center}
+.hero-actions{justify-content:center}
+.hero-phone{display:flex;justify-content:center}
+.logo img{height:46px}
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<div class="container header-inner">
+<a class="logo" href="#">
+<img src="icon_1.png" alt="Stylionix Logo">STYLIONIX
+</a>
+</div>
+</header>
+
+<section class="hero">
+<div class="container hero-grid">
+<div>
+<h1>Run your salon <span>like a business</span></h1>
+<p>Stylionix is a professional salon management app for barbers and hair salons. Simple, powerful, and built to grow your business.</p>
+
+<div class="hero-actions">
+<a href="https://play.google.com/store/apps" class="btn btn-secondary google-play">
+<i class="fab fa-google-play"></i> Google Play
+</a>
+<a href="https://wa.me/212652084735" class="btn btn-primary">
+<i class="fab fa-whatsapp"></i> Contact Sales
+</a>
+</div>
+</div>
+
+<div class="hero-phone">
+<img src="10.jpg" alt="Stylionix App Preview">
+</div>
+</div>
+</section>
+
+<section class="languages">
+<div class="container">
+<h2>Available Languages</h2>
+<p>Designed for professionals worldwide</p>
+<div class="language-list">
+<span>🇬🇧 English</span>
+<span>🇫🇷 Français</span>
+<span>🇸🇦 العربية</span>
+<span>🇪🇸 Español</span>
+<span>🇨🇳 中文</span>
+<span>🇮🇳 हिंदी</span>
+</div>
+</div>
+</section>
+
+<section class="features">
+<div class="container features-grid">
+<div class="feature"><i class="fas fa-chart-line"></i><h3>Financial Control</h3><p>Track revenue, expenses and profits in real time.</p></div>
+<div class="feature"><i class="fas fa-calendar-alt"></i><h3>Smart Scheduling</h3><p>Organize appointments without conflicts.</p></div>
+<div class="feature"><i class="fas fa-users"></i><h3>Client Management</h3><p>Store preferences and visit history effortlessly.</p></div>
+</div>
+</section>
+
+<section class="gallery">
+<div class="container">
+<div class="gallery-grid">
+<div class="gallery-item"><img src="10.jpg"></div>
+<div class="gallery-item"><img src="13.jpg"></div>
+<div class="gallery-item"><img src="9.jpg"></div>
+<div class="gallery-item"><img src="8.jpg"></div>
+<div class="gallery-item"><img src="6.jpg"></div>
+<div class="gallery-item"><img src="11.jpg"></div>
+<div class="gallery-item"><img src="5.jpg"></div>
+<div class="gallery-item"><img src="7.jpg"></div>
+</div>
+</div>
+</section>
+
+<section class="final-cta">
+<div class="container">
+<h2>Upgrade your salon today</h2>
+<p>Professional management. Global reach. One app.</p><br>
+<a href="https://play.google.com/store/apps" class="btn btn-secondary google-play">
+<i class="fab fa-google-play"></i> Download on Google Play
+</a>
+</div>
+</section>
+
+<footer>
+<p>© 2024 SASTOUKA DIGITAL – All rights reserved</p>
+</footer>
+
+</body>
+</html>
