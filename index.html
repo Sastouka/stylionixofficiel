@@ -1,1645 +1,509 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <meta name="description" content="EasyMedicaLink - Logiciel de gestion de cabinet médical. Solution locale, sécurisée et multi-supports (Windows, Mac, Tablette).">
-    <title>EasyMedicaLink | La Solution Médicale Tout-en-un</title>
-    
-    <link rel="icon" type="image/png" href="icon.png">
-
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
-    <script>
-        !function(f,b,e,v,n,t,s)
-        {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-        n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-        if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-        n.queue=[];t=b.createElement(e);t.async=!0;
-        t.src=v;s=b.getElementsByTagName(e)[0];
-        s.parentNode.insertBefore(t,s)}(window, document,'script',
-        'https://connect.facebook.net/en_US/fbevents.js');
-        
-        // ⚠️ REMPLACEZ 'VOTRE_ID_PIXEL_ICI' PAR VOTRE VRAI ID (ex: 1234567890)
-        fbq('init', 'VOTRE_ID_PIXEL_ICI'); 
-        fbq('track', 'PageView');
-    </script>
-    <noscript><img height="1" width="1" style="display:none"
-    src="https://www.facebook.com/tr?id=VOTRE_ID_PIXEL_ICI&ev=PageView&noscript=1"
-    alt="Facebook Pixel" /></noscript>
-    <style>
-        /* -----------------------------------------------------------
-           NOUVELLE PALETTE DE COULEURS EXTRAORDINAIRE
-        ----------------------------------------------------------- */
-        :root {
-            /* Couleurs principales - Gradients modernes */
-            --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            --primary: #5a67d8;
-            --primary-dark: #4c51bf;
-            --primary-light: #c3dafe;
-            --primary-glow: rgba(102, 126, 234, 0.15);
-            
-            /* Couleurs secondaires - Profondeur élégante */
-            --secondary-gradient: linear-gradient(135deg, #1a202c 0%, #2d3748 100%);
-            --secondary: #2d3748;
-            --secondary-dark: #1a202c;
-            --secondary-light: #4a5568;
-            
-            /* Accents vibrants */
-            --accent-teal: #0bc5ea;
-            --accent-teal-dark: #00a3c4;
-            --accent-teal-light: #76e4f7;
-            
-            --accent-coral: #ed64a6;
-            --accent-coral-dark: #d53f8c;
-            --accent-coral-light: #fed7e2;
-            
-            --accent-emerald: #48bb78;
-            --accent-emerald-dark: #38a169;
-            --accent-emerald-light: #c6f6d5;
-            
-            --accent-amber: #ed8936;
-            --accent-amber-dark: #dd6b20;
-            --accent-amber-light: #feebc8;
-            
-            /* Couleurs neutres sophistiquées */
-            --text-main: #2d3748;
-            --text-light: #718096;
-            --text-lighter: #a0aec0;
-            --text-white: #ffffff;
-            --text-white-muted: #e2e8f0;
-            
-            /* Backgrounds */
-            --bg-body: linear-gradient(135deg, #f7fafc 0%, #edf2f7 100%);
-            --bg-alt: #ffffff;
-            --bg-card: #ffffff;
-            --bg-dark: #1a202c;
-            
-            /* Effets */
-            --shadow-soft: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.01);
-            --shadow-medium: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-            --shadow-hover: 0 25px 50px -12px rgba(102, 126, 234, 0.25);
-            --shadow-glow: 0 0 30px rgba(102, 126, 234, 0.4);
-            --radius: 16px;
-            --radius-lg: 24px;
-            --radius-xl: 32px;
-            
-            --whatsapp-green: #25D366;
-            --whatsapp-green-dark: #128C7E;
-            
-            /* Gradients spéciaux */
-            --gradient-ai: linear-gradient(135deg, #667eea 0%, #764ba2 25%, #ed64a6 100%);
-            --gradient-medical: linear-gradient(135deg, #0bc5ea 0%, #48bb78 100%);
-            --gradient-premium: linear-gradient(135deg, #ed64a6 0%, #ed8936 50%, #48bb78 100%);
-        }
-
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-
-        body {
-            font-family: 'Poppins', 'Roboto', sans-serif;
-            color: var(--text-main);
-            background: var(--bg-body);
-            line-height: 1.7;
-            -webkit-tap-highlight-color: transparent;
-            overflow-x: hidden;
-            min-height: 100vh;
-        }
-
-        a { text-decoration: none; color: inherit; transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
-        img { display: block; max-width: 100%; height: auto; border-radius: var(--radius); }
-        ul { list-style: none; }
-
-        /* --- CORRECTION ESPACEMENT ICÔNES --- */
-        i { margin-right: 10px; }
-        .icon-box i, .btn-whatsapp-float i, .logo i { margin-right: 0; }
-        .logo i { margin-right: 12px; }
-
-        /* --- ANIMATIONS ET EFFETS --- */
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
-        }
-
-        @keyframes glow {
-            0%, 100% { box-shadow: 0 0 20px rgba(102, 126, 234, 0.3); }
-            50% { box-shadow: 0 0 40px rgba(102, 126, 234, 0.6); }
-        }
-
-        @keyframes slideInUp {
-            from { transform: translateY(30px); opacity: 0; }
-            to { transform: translateY(0); opacity: 1; }
-        }
-
-        .animate-float { animation: float 6s ease-in-out infinite; }
-        .animate-glow { animation: glow 4s ease-in-out infinite; }
-        .animate-slide { animation: slideInUp 0.8s ease-out; }
-
-        /* --- BOUTONS STANDARDS --- */
-        .btn-primary {
-            background: var(--primary-gradient);
-            color: white;
-            padding: 16px 36px;
-            border-radius: var(--radius);
-            font-weight: 600;
-            font-size: 1.1rem;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            border: none;
-            box-shadow: var(--shadow-medium);
-            cursor: pointer;
-            user-select: none;
-            position: relative;
-            overflow: hidden;
-            transition: all 0.4s ease;
-        }
-
-        .btn-primary::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-            transition: left 0.7s;
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-5px) scale(1.05);
-            box-shadow: var(--shadow-hover);
-        }
-
-        .btn-primary:hover::before {
-            left: 100%;
-        }
-
-        .btn-secondary {
-            background: transparent;
-            color: var(--secondary);
-            padding: 16px 36px;
-            border-radius: var(--radius);
-            font-weight: 600;
-            font-size: 1.1rem;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            border: 2px solid var(--secondary-light);
-            cursor: pointer;
-            user-select: none;
-            transition: all 0.4s ease;
-            backdrop-filter: blur(10px);
-        }
-
-        .btn-secondary:hover {
-            background: var(--secondary);
-            color: white;
-            transform: translateY(-5px);
-            box-shadow: var(--shadow-medium);
-            border-color: var(--secondary);
-        }
-
-        .arch-badge {
-            background: rgba(255,255,255,0.25);
-            color: inherit;
-            padding: 6px 14px;
-            border-radius: 50px;
-            font-size: 0.85rem;
-            font-weight: 800;
-            letter-spacing: 0.5px;
-            border: 1px solid rgba(255,255,255,0.3);
-            margin-left: 10px;
-            backdrop-filter: blur(5px);
-        }
-
-        .btn-secondary .arch-badge {
-            background: var(--secondary-light);
-            color: white;
-            border: none;
-        }
-
-        /* --- BOUTONS FLOTTANTS --- */
-        .floating-downloads {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            z-index: 9999;
-            display: flex;
-            flex-direction: column;
-            gap: 16px;
-            align-items: flex-end;
-            cursor: move;
-            touch-action: none;
-        }
-
-        .btn-float {
-            background: var(--secondary-gradient);
-            color: white;
-            padding: 16px 28px;
-            border-radius: 50px;
-            font-size: 1rem;
-            font-weight: 500;
-            display: flex;
-            align-items: center;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-            border: 1px solid rgba(255,255,255,0.15);
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            backdrop-filter: blur(10px);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .btn-float:hover {
-            background: var(--primary-gradient);
-            transform: translateY(-5px) scale(1.05);
-            box-shadow: var(--shadow-hover);
-        }
-
-        .btn-whatsapp-float {
-            position: fixed;
-            bottom: 30px;
-            left: 30px;
-            background: linear-gradient(135deg, var(--whatsapp-green) 0%, var(--whatsapp-green-dark) 100%);
-            color: white;
-            width: 70px;
-            height: 70px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 36px;
-            box-shadow: 0 10px 30px rgba(37, 211, 102, 0.5);
-            z-index: 9999;
-            cursor: move;
-            touch-action: none;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            animation: float 4s ease-in-out infinite;
-        }
-
-        .btn-whatsapp-float:hover {
-            transform: scale(1.2) rotate(10deg);
-            box-shadow: 0 15px 40px rgba(37, 211, 102, 0.7);
-        }
-
-        /* --- MESSAGES AIDE --- */
-        .browser-info-box {
-            background: linear-gradient(135deg, #e6fffa 0%, #ebf8ff 100%);
-            border-left: 5px solid var(--accent-teal);
-            padding: 20px 25px;
-            border-radius: var(--radius);
-            display: inline-block;
-            margin-bottom: 30px;
-            text-align: left;
-            max-width: 700px;
-            font-size: 1rem;
-            box-shadow: var(--shadow-soft);
-            color: var(--text-main);
-            backdrop-filter: blur(10px);
-        }
-
-        .firefox-txt {
-            color: var(--accent-emerald-dark);
-            font-weight: 700;
-            display: block;
-            margin-bottom: 8px;
-            font-size: 1.05rem;
-        }
-
-        .chrome-txt {
-            color: var(--accent-amber-dark);
-            display: block;
-            font-size: 1.05rem;
-        }
-
-        /* --- SECTION RÉSEAU --- */
-        .network-section {
-            padding: 8rem 1rem;
-            background: var(--secondary-gradient);
-            color: white;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .network-section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 5px;
-            background: var(--gradient-premium);
-        }
-
-        .network-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            position: relative;
-            z-index: 1;
-        }
-
-        .network-diagram {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 40px;
-            margin-top: 60px;
-        }
-
-        .network-card {
-            background: rgba(255,255,255,0.08);
-            border: 1px solid rgba(255,255,255,0.15);
-            padding: 30px;
-            border-radius: var(--radius-lg);
-            width: 240px;
-            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            backdrop-filter: blur(10px);
-            position: relative;
-        }
-
-        .network-card:hover {
-            transform: translateY(-15px) scale(1.05);
-            background: rgba(255,255,255,0.15);
-            border-color: var(--accent-teal);
-        }
-
-        .network-card.main-server {
-            background: var(--primary-gradient);
-            border-color: rgba(255,255,255,0.3);
-            transform: scale(1.15);
-            box-shadow: var(--shadow-glow);
-            z-index: 2;
-            animation: glow 3s ease-in-out infinite;
-        }
-
-        .network-card.main-server:hover {
-            transform: scale(1.2);
-        }
-
-        .network-card i {
-            font-size: 3.5rem;
-            margin-bottom: 20px;
-            display: block;
-            margin-right: 0;
-            background: linear-gradient(135deg, #ffffff 0%, #e2e8f0 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .network-badge {
-            background: var(--gradient-premium);
-            color: white;
-            padding: 8px 20px;
-            border-radius: 50px;
-            font-size: 0.9rem;
-            font-weight: 800;
-            letter-spacing: 1px;
-            display: inline-block;
-            margin-bottom: 20px;
-            box-shadow: var(--shadow-medium);
-        }
-
-        /* --- HEADER & HERO --- */
-        header {
-            background: var(--secondary-gradient);
-            color: white;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            box-shadow: var(--shadow-medium);
-            border-bottom: 3px solid var(--primary);
-        }
-
-        .navbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 1.2rem 2rem;
-        }
-
-        .logo {
-            font-size: 2rem;
-            font-weight: 800;
-            display: flex;
-            align-items: center;
-            font-family: 'Poppins', sans-serif;
-            color: white;
-            text-shadow: 0 2px 10px rgba(0,0,0,0.2);
-        }
-
-        .logo i {
-            color: var(--accent-teal);
-            font-size: 2.5rem;
-            filter: drop-shadow(0 0 10px rgba(11, 197, 234, 0.5));
-        }
-
-        .hero {
-            background: linear-gradient(135deg, #f7fafc 0%, #edf2f7 50%, #e6fffa 100%);
-            padding: 6rem 1rem 8rem;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: radial-gradient(circle at 20% 80%, var(--primary-glow) 0%, transparent 50%),
-                        radial-gradient(circle at 80% 20%, rgba(237, 100, 166, 0.1) 0%, transparent 50%);
-            z-index: 0;
-        }
-
-        .hero-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            position: relative;
-            z-index: 1;
-        }
-
-        h1 {
-            font-size: 3.2rem;
-            background: linear-gradient(135deg, var(--secondary) 0%, var(--primary) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin-bottom: 1.5rem;
-            font-weight: 900;
-            line-height: 1.2;
-            text-shadow: 0 5px 15px rgba(0,0,0,0.1);
-        }
-
-        .hero-desc {
-            font-size: 1.3rem;
-            color: var(--text-light);
-            margin-bottom: 3rem;
-            max-width: 900px;
-            margin-left: auto;
-            margin-right: auto;
-            line-height: 1.8;
-        }
-
-        /* --- NOUVEAU STYLE POUR LA GALERIE DE DOCUMENTS --- */
-        .hero-image-wrapper {
-            background: white;
-            padding: 20px;
-            border-radius: var(--radius-lg);
-            border: 1px solid rgba(0,0,0,0.05);
-            box-shadow: var(--shadow-hover);
-            margin-bottom: 50px;
-            /* On garde l'effet 3D mais adapté pour le scroll */
-            transform: perspective(1000px) rotateX(2deg);
-            transition: all 0.6s ease;
-            overflow: hidden; /* Important pour ne pas déborder */
-        }
-
-        .hero-image-wrapper:hover {
-            transform: perspective(1000px) rotateX(0deg) translateY(-10px);
-            box-shadow: 0 40px 60px -20px rgba(102, 126, 234, 0.4);
-        }
-
-        .doc-scroll-container {
-            display: flex;
-            gap: 20px;
-            overflow-x: auto;
-            padding-bottom: 10px; /* Espace pour la scrollbar */
-            scroll-behavior: smooth;
-            -webkit-overflow-scrolling: touch;
-            scrollbar-width: thin;
-            scrollbar-color: var(--primary) transparent;
-        }
-
-        /* Personnalisation Scrollbar Webkit */
-        .doc-scroll-container::-webkit-scrollbar {
-            height: 8px;
-        }
-        .doc-scroll-container::-webkit-scrollbar-track {
-            background: transparent;
-        }
-        .doc-scroll-container::-webkit-scrollbar-thumb {
-            background-color: var(--primary-light);
-            border-radius: 20px;
-        }
-
-        .doc-item {
-            flex: 0 0 auto;
-            width: 250px; /* Largeur d'aperçu */
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-            border: 1px solid rgba(0,0,0,0.05);
-            transition: transform 0.3s ease;
-            cursor: pointer;
-        }
-
-        .doc-item:hover {
-            transform: scale(1.03);
-            border-color: var(--primary);
-        }
-
-        .doc-item img {
-            width: 100%;
-            height: auto;
-            display: block;
-        }
-        
-        /* Titre discret au dessus des documents */
-        .doc-label {
-            display: block;
-            text-align: left;
-            font-size: 0.9rem;
-            font-weight: 700;
-            color: var(--primary);
-            margin-bottom: 10px;
-            padding-left: 5px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-        /* ----------------------------------------------- */
-
-        .download-group {
-            display: flex;
-            gap: 20px;
-            justify-content: center;
-            flex-wrap: wrap;
-            margin-bottom: 30px;
-        }
-
-        .module-list {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 15px;
-            margin-top: 40px;
-        }
-
-        .module-tag {
-            background: white;
-            padding: 12px 24px;
-            border-radius: 50px;
-            box-shadow: var(--shadow-soft);
-            border: 2px solid transparent;
-            color: var(--text-light);
-            font-weight: 600;
-            font-size: 1rem;
-            display: flex;
-            align-items: center;
-            transition: all 0.3s ease;
-        }
-
-        .module-tag:hover {
-            transform: translateY(-5px);
-            border-color: var(--primary);
-            box-shadow: var(--shadow-medium);
-        }
-
-        .module-tag i {
-            color: var(--primary);
-            font-size: 1.1rem;
-        }
-
-        /* --- SECTIONS --- */
-        .section-header {
-            text-align: center;
-            margin-bottom: 4rem;
-        }
-
-        .section-header h2 {
-            font-size: 2.8rem;
-            background: linear-gradient(135deg, var(--secondary) 0%, var(--primary) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin-bottom: 1rem;
-            font-weight: 800;
-        }
-
-        .split-section {
-            padding: 8rem 1rem;
-            border-bottom: 1px solid rgba(0,0,0,0.05);
-            background: var(--bg-alt);
-            position: relative;
-        }
-
-        .split-section.alt {
-            background: linear-gradient(135deg, #ffffff 0%, #f7fafc 100%);
-        }
-
-        .split-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            align-items: center;
-            gap: 6rem;
-        }
-
-        .split-container.reverse { flex-direction: row-reverse; }
-
-        .text-col {
-            flex: 1;
-        }
-
-        .img-col {
-            flex: 1;
-        }
-
-        .img-col img {
-            box-shadow: var(--shadow-hover);
-            border: 1px solid rgba(0,0,0,0.05);
-            transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            background: white;
-            padding: 15px;
-            border-radius: var(--radius-lg);
-        }
-
-        .img-col img:hover {
-            transform: scale(1.05) rotate(2deg);
-            box-shadow: 0 30px 60px -15px rgba(102, 126, 234, 0.5);
-        }
-
-        h2 {
-            font-size: 2.5rem;
-            color: var(--secondary);
-            margin-bottom: 2rem;
-            font-weight: 800;
-            position: relative;
-            display: inline-block;
-        }
-
-        h2::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 0;
-            width: 80px;
-            height: 4px;
-            background: var(--primary-gradient);
-            border-radius: 2px;
-        }
-
-        .feature-check li {
-            margin-bottom: 20px;
-            display: flex;
-            align-items: start;
-            font-size: 1.1rem;
-            color: var(--text-main);
-            line-height: 1.7;
-        }
-
-        .feature-check i {
-            color: var(--accent-teal);
-            font-size: 1.2rem;
-            margin-top: 5px;
-            margin-right: 15px;
-        }
-
-        /* --- ADMINISTRATION --- */
-        .admin-section {
-            padding: 8rem 1rem;
-            background: var(--secondary-gradient);
-            color: white;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .admin-section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 5px;
-            background: var(--gradient-medical);
-        }
-
-        .admin-section h2 {
-            color: white;
-            text-align: center;
-            margin-bottom: 5rem;
-            font-size: 2.8rem;
-        }
-
-        .admin-section h2::after {
-            left: 50%;
-            transform: translateX(-50%);
-            background: var(--gradient-medical);
-        }
-
-        .admin-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 40px;
-            max-width: 1300px;
-            margin: 0 auto;
-        }
-
-        .admin-card {
-            background: rgba(255,255,255,0.1);
-            border-radius: var(--radius-lg);
-            padding: 2.5rem;
-            border: 1px solid rgba(255,255,255,0.15);
-            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            backdrop-filter: blur(10px);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .admin-card:hover {
-            transform: translateY(-15px);
-            border-color: var(--accent-teal);
-            box-shadow: var(--shadow-glow);
-        }
-
-        .admin-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 5px;
-            background: var(--gradient-medical);
-        }
-
-        .admin-card img {
-            margin-bottom: 25px;
-            border-radius: var(--radius);
-            box-shadow: var(--shadow-medium);
-        }
-
-        .admin-card h3 {
-            color: var(--accent-teal);
-            margin: 1rem 0 1.5rem;
-            font-size: 1.5rem;
-            display: flex;
-            align-items: center;
-        }
-
-        .admin-card ul {
-            font-size: 1.05rem;
-            color: var(--text-white-muted);
-            margin-left: 0;
-        }
-
-        .admin-card li {
-            margin-bottom: 12px;
-            display: flex;
-            align-items: center;
-            position: relative;
-            padding-left: 25px;
-        }
-
-        .admin-card li::before {
-            content: "▸";
-            color: var(--accent-teal);
-            font-weight: bold;
-            position: absolute;
-            left: 0;
-            font-size: 1.3rem;
-        }
-
-        /* --- FEATURES --- */
-        .features-grid-section {
-            padding: 8rem 1rem;
-            background: linear-gradient(135deg, #f7fafc 0%, #ffffff 100%);
-            position: relative;
-        }
-
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 40px;
-            max-width: 1300px;
-            margin: 0 auto;
-        }
-
-        .feature-card {
-            padding: 3rem 2.5rem;
-            border-radius: var(--radius-lg);
-            background: white;
-            border: 1px solid rgba(0,0,0,0.05);
-            box-shadow: var(--shadow-soft);
-            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .feature-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 5px;
-            background: var(--primary-gradient);
-        }
-
-        .feature-card:hover {
-            transform: translateY(-15px);
-            border-color: var(--primary);
-            box-shadow: var(--shadow-hover);
-        }
-
-        .icon-box {
-            width: 90px;
-            height: 90px;
-            border-radius: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2.5rem;
-            margin-bottom: 2rem;
-            box-shadow: var(--shadow-medium);
-        }
-
-        .card-title {
-            font-size: 1.5rem;
-            font-weight: 800;
-            margin-bottom: 1.2rem;
-            color: var(--secondary);
-        }
-
-        .card-text {
-            font-size: 1.1rem;
-            color: var(--text-light);
-            line-height: 1.8;
-        }
-
-        .consult-icon {
-            background: linear-gradient(135deg, var(--primary-light) 0%, #a3bffa 100%);
-            color: var(--primary);
-        }
-
-        .bio-icon {
-            background: linear-gradient(135deg, var(--accent-coral-light) 0%, #fbb6ce 100%);
-            color: var(--accent-coral);
-        }
-
-        .radio-icon {
-            background: linear-gradient(135deg, var(--primary-light) 0%, #a3bffa 100%);
-            color: var(--primary-dark);
-        }
-
-        .pharma-icon {
-            background: linear-gradient(135deg, var(--accent-amber-light) 0%, #fed7aa 100%);
-            color: var(--accent-amber);
-        }
-
-        .ia-icon {
-            background: var(--gradient-ai);
-            color: white;
-        }
-
-        .stats-icon {
-            background: linear-gradient(135deg, var(--accent-emerald-light) 0%, #9ae6b4 100%);
-            color: var(--accent-emerald);
-        }
-
-        /* --- FOOTER --- */
-        footer {
-            background: var(--secondary-gradient);
-            color: var(--text-white-muted);
-            padding: 5rem 1rem;
-            text-align: center;
-            font-size: 1rem;
-            border-top: 5px solid var(--primary);
-            position: relative;
-        }
-
-        footer::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
-        }
-
-        footer strong {
-            color: white;
-        }
-
-        footer a {
-            color: var(--text-white) !important;
-            text-decoration: none;
-            border-bottom: 1px solid rgba(255,255,255,0.3);
-            padding-bottom: 2px;
-            transition: all 0.3s ease;
-        }
-
-        footer a:hover {
-            color: var(--accent-teal) !important;
-            border-bottom-color: var(--accent-teal);
-        }
-
-        /* --- MODALES --- */
-        .modal-overlay {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(17, 24, 39, 0.9);
-            z-index: 10000;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
-            backdrop-filter: blur(10px);
-        }
-
-        .modal-content {
-            background: linear-gradient(135deg, #ffffff 0%, #f7fafc 100%);
-            width: 100%;
-            max-width: 850px;
-            max-height: 90vh;
-            border-radius: var(--radius-lg);
-            position: relative;
-            display: flex;
-            flex-direction: column;
-            box-shadow: 0 40px 80px rgba(0, 0, 0, 0.3);
-            animation: slideIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            border-top: 6px solid var(--primary);
-        }
-
-        .modal-header {
-            padding: 30px;
-            border-bottom: 1px solid rgba(0,0,0,0.1);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background: white;
-            border-radius: var(--radius-lg) var(--radius-lg) 0 0;
-        }
-
-        .modal-header h2 {
-            font-size: 1.8rem;
-            margin: 0;
-            background: linear-gradient(135deg, var(--secondary) 0%, var(--primary) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            font-weight: 800;
-        }
-
-        .modal-close {
-            font-size: 1.5rem;
-            cursor: pointer;
-            color: var(--text-light);
-            transition: all 0.3s ease;
-            width: 45px;
-            height: 45px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 50%;
-            background: var(--bg-alt);
-        }
-
-        .modal-close:hover {
-            color: white;
-            background: var(--primary);
-            transform: rotate(90deg);
-        }
-
-        .modal-body {
-            padding: 40px;
-            overflow-y: auto;
-            font-size: 1.05rem;
-            color: var(--text-light);
-            text-align: left;
-            line-height: 1.8;
-        }
-
-        .modal-body h3 {
-            font-size: 1.4rem;
-            color: var(--primary);
-            margin-top: 35px;
-            margin-bottom: 20px;
-            border-bottom: 2px solid var(--primary-light);
-            padding-bottom: 10px;
-            font-weight: 700;
-        }
-
-        .highlight-box {
-            background: linear-gradient(135deg, var(--primary-light) 0%, #e6fffa 100%);
-            border-left: 5px solid var(--primary);
-            padding: 25px;
-            margin: 25px 0;
-            border-radius: var(--radius);
-            color: var(--secondary);
-            box-shadow: var(--shadow-soft);
-        }
-
-        .highlight-box.warning {
-            background: linear-gradient(135deg, #fff7ed 0%, #feebc8 100%);
-            border-color: var(--accent-amber);
-            color: #9a3412;
-        }
-
-        @keyframes slideIn {
-            from {
-                transform: translateY(50px) scale(0.95);
-                opacity: 0;
-            }
-            to {
-                transform: translateY(0) scale(1);
-                opacity: 1;
-            }
-        }
-
-        /* --- RESPONSIVE --- */
-        @media (max-width: 1100px) {
-            .split-container, .split-container.reverse {
-                flex-direction: column;
-                text-align: center;
-                gap: 4rem;
-            }
-            
-            h2::after {
-                left: 50%;
-                transform: translateX(-50%);
-            }
-            
-            .img-col {
-                width: 100%;
-                max-width: 600px;
-                margin: 0 auto;
-            }
-        }
-
-        @media (max-width: 900px) {
-            h1 {
-                font-size: 2.5rem;
-            }
-            
-            .section-header h2 {
-                font-size: 2.2rem;
-            }
-            
-            h2 {
-                font-size: 2rem;
-            }
-            
-            .admin-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .features-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .floating-downloads {
-                bottom: 20px;
-                right: 20px;
-            }
-            
-            .btn-whatsapp-float {
-                bottom: 20px;
-                left: 20px;
-                width: 60px;
-                height: 60px;
-                font-size: 30px;
-            }
-            
-            .btn-float span:not(.arch-badge) {
-                display: none;
-            }
-            
-            .btn-float {
-                padding: 16px;
-                border-radius: 50%;
-            }
-            
-            .network-diagram {
-                flex-direction: column;
-                gap: 30px;
-            }
-            
-            .network-card.main-server {
-                transform: scale(1);
-                margin: 20px 0;
-            }
-            
-            .module-list {
-                gap: 10px;
-            }
-            
-            .module-tag {
-                padding: 10px 20px;
-                font-size: 0.9rem;
-            }
-        }
-
-        @media (max-width: 600px) {
-            h1 {
-                font-size: 2rem;
-            }
-            
-            .hero-desc {
-                font-size: 1.1rem;
-            }
-            
-            .section-header h2 {
-                font-size: 1.8rem;
-            }
-            
-            .download-group {
-                flex-direction: column;
-                align-items: center;
-            }
-            
-            .btn-primary, .btn-secondary {
-                width: 100%;
-                max-width: 300px;
-                justify-content: center;
-            }
-            
-            .navbar {
-                padding: 1rem;
-            }
-            
-            .logo {
-                font-size: 1.6rem;
-            }
-            
-            .hero {
-                padding: 4rem 1rem 6rem;
-            }
-            
-            .split-section, .features-grid-section, .admin-section {
-                padding: 4rem 1rem;
-            }
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Stylionix – Logiciel de Gestion pour Coiffeurs & Barbiers</title>
+<meta name="description" content="Accès Privé réservé aux propriétaires de salons. Licence à vie sans abonnement. Gestion Agenda, Caisse et Stock.">
+
+<meta property="og:title" content="Stylionix - Gestion Salon Pro (Accès Privé)">
+<meta property="og:description" content="Application réservée aux Coiffeurs et Barbiers. Test Gratuit 7 Jours.">
+<meta property="og:type" content="business.business">
+<meta property="business:contact_data:country_name" content="Morocco">
+
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<script>
+  !function(f,b,e,v,n,t,s)
+  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+  n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];
+  s.parentNode.insertBefore(t,s)}(window, document,'script',
+  'https://connect.facebook.net/en_US/fbevents.js');
+  
+  // VOTRE ID EST INTÉGRÉ ICI
+  fbq('init', '2428524580896182'); 
+  
+  // On signale une "Vue de Page" à Facebook
+  fbq('track', 'PageView');
+
+  // FONCTION SPÉCIALE : Ne déclenche le "Lead" que si c'est Android
+  function trackProLead() {
+      var ua = navigator.userAgent.toLowerCase();
+      var isAndroid = ua.indexOf("android") > -1;
+      
+      if(isAndroid) {
+          // C'est un Android : On envoie le signal "Lead Pro" à Facebook
+          fbq('track', 'Lead', {
+              content_name: 'Salon License Request',
+              content_category: 'Professional Software',
+              value: 15.00,
+              currency: 'USD',
+              user_device: 'Android' 
+          });
+          console.log("Pixel Fired: Professional Android Lead sent to ID 2428524580896182");
+      } else {
+          // Ce n'est pas un Android : On ne signale pas la conversion pour économiser le budget pub
+          console.log("Pixel Skipped: Not Android (Algo optimization)");
+      }
+      return true; 
+  }
+</script>
+<noscript><img height="1" width="1" style="display:none"
+  src="https://www.facebook.com/tr?id=2428524580896182&ev=PageView&noscript=1"
+/></noscript>
+<style>
+:root{
+    --primary:#0f1023;
+    --accent:#e94560;
+    --whatsapp:#25D366;
+    --gmail:#EA4335;
+    --bg:#f6f7fb;
+    --white:#ffffff;
+    --dark:#1a1a1a;
+    --muted:#6b7280;
+}
+
+*{box-sizing:border-box}
+
+body{
+    margin:0;
+    font-family:'Inter',sans-serif;
+    background:var(--bg);
+    color:var(--dark);
+    line-height:1.6;
+    overflow-x: hidden;
+    width: 100%;
+}
+
+img{max-width:100%;display:block}
+
+/* ===== HEADER ===== */
+header{
+    position:fixed;
+    top:0;
+    width:100%;
+    background:rgba(15,16,35,.95);
+    backdrop-filter:blur(10px);
+    z-index:1000;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+.container{
+    width:90%;
+    max-width:1200px;
+    margin:auto;
+}
+.header-inner{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:15px 0;
+}
+.logo{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    color:#fff;
+    text-decoration:none;
+    font-family:'Bebas Neue',sans-serif;
+    font-size:28px;
+    letter-spacing:1px;
+}
+.logo img{ height:45px; width:auto; }
+
+.header-cta {
+    background: var(--whatsapp);
+    color: white;
+    padding: 8px 16px;
+    border-radius: 50px;
+    font-weight: 700;
+    font-size: 13px;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    transition: 0.3s;
+}
+.header-cta:hover { background: #128C7E; }
+
+/* ===== BUTTONS ===== */
+.btn{
+    display:inline-flex;
+    align-items:center;
+    justify-content: center;
+    gap:10px;
+    padding:16px 32px;
+    border-radius:12px;
+    font-weight:700;
+    font-size:16px;
+    text-decoration:none;
+    transition:.25s;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    cursor: pointer;
+}
+.btn-whatsapp{
+    background:var(--whatsapp);
+    color:#fff;
+    border: 2px solid var(--whatsapp);
+}
+.btn-whatsapp:hover{
+    background:#128C7E;
+    transform:translateY(-3px);
+    box-shadow: 0 15px 30px rgba(37, 211, 102, 0.3);
+}
+.btn-gmail{
+    background:var(--gmail);
+    color:#fff;
+    border: 2px solid var(--gmail);
+}
+.btn-gmail:hover{
+    background:#c5221f;
+    transform:translateY(-3px);
+}
+/* Style spécifique pour le bouton Google Play */
+.btn-playstore {
+    background: transparent;
+    border: 2px solid rgba(255, 255, 255, 0.8); /* Bordure plus visible */
+    color: #fff;
+}
+.btn-playstore:hover {
+    background: #fff;
+    color: #000; /* Devient blanc avec texte noir au survol */
+    transform: translateY(-3px);
+}
+.btn-playstore i {
+    font-size: 18px;
+}
+
+/* ===== HERO SECTION ===== */
+.hero{
+    padding:140px 0 80px;
+    background:linear-gradient(135deg,#0f1023 0%,#240b36 100%);
+    color:#fff;
+    position: relative;
+    overflow: hidden;
+}
+.hero-grid{
+    display:grid;
+    grid-template-columns:1.2fr 1fr;
+    gap:40px;
+    align-items:center;
+    position: relative;
+    z-index: 2;
+}
+.badge-private {
+    display: inline-block;
+    background: rgba(255, 193, 7, 0.2);
+    color: #FFC107;
+    border: 1px solid #FFC107;
+    padding: 6px 14px;
+    border-radius: 50px;
+    font-size: 13px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+.hero h1{
+    font-family:'Bebas Neue',sans-serif;
+    font-size:clamp(48px,6vw,76px);
+    line-height:0.95;
+    margin-bottom:20px;
+}
+.hero p{
+    font-size:18px;
+    color:#e5e7eb;
+    max-width:550px;
+    margin-bottom: 20px;
+    opacity: 0.9;
+}
+
+/* PRICING FLASH BOX */
+.price-flash {
+    display: inline-flex;
+    align-items: center;
+    gap: 15px;
+    background: rgba(255,255,255,0.1);
+    padding: 10px 20px;
+    border-radius: 12px;
+    margin-bottom: 30px;
+    border: 1px solid rgba(255,255,255,0.2);
+}
+.old-price {
+    font-size: 20px;
+    color: #aaa;
+    text-decoration: line-through;
+    font-weight: 600;
+}
+.new-price {
+    font-size: 28px;
+    color: var(--whatsapp);
+    font-weight: 800;
+}
+.price-label {
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #fff;
+    border-left: 1px solid #555;
+    padding-left: 15px;
+}
+
+/* ACCESS BOX */
+.access-box {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    padding: 20px;
+    border-radius: 16px;
+    margin-bottom: 30px;
+}
+.access-box h4 { margin: 0 0 10px 0; color: #FFC107; font-size: 16px; text-transform: uppercase; }
+.access-box div { font-size: 14px; margin-bottom: 5px; display: flex; align-items: center; gap: 10px; }
+
+.hero-actions{
+    display:flex;
+    gap:15px;
+    flex-wrap:wrap;
+}
+
+.hero-phone img{
+    max-width:320px;
+    border-radius:40px;
+    border:10px solid #1a1a1a;
+    box-shadow:0 30px 80px rgba(0,0,0,.5);
+    transform:rotate(-3deg);
+}
+
+/* ===== FEATURES ===== */
+.features{ padding:80px 0; background:#fff; }
+.section-title { text-align: center; margin-bottom: 50px; }
+.section-title h2 { font-family:'Bebas Neue',sans-serif; font-size: 48px; color: var(--primary); margin: 0; }
+.features-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:30px; }
+.feature{ background:#f9fafb; padding:40px 30px; border-radius:20px; border: 1px solid #eee; }
+.feature i{ font-size:40px; color:var(--accent); margin-bottom:20px; }
+.feature h3 { font-size: 20px; margin-bottom: 10px; }
+
+/* ===== GALLERY ===== */
+.gallery{ background:#0f1023; padding:80px 0; color: #fff; }
+.gallery h2 { color: #fff !important; }
+.gallery-grid{ display:flex; gap:20px; overflow-x:auto; padding: 20px 0 40px 0; }
+.gallery-grid::-webkit-scrollbar{ height: 6px; }
+.gallery-grid::-webkit-scrollbar-thumb { background: #333; border-radius: 10px; }
+.gallery-item{ flex:0 0 240px; border-radius:20px; overflow:hidden; box-shadow:0 15px 40px rgba(0,0,0,0.3); }
+
+/* ===== DEEP DETAILS ===== */
+.deep-details { padding: 100px 0; background: #fff; }
+.details-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 40px; }
+.detail-card { background: #fcfcfc; border: 1px solid #eee; padding: 40px; border-radius: 24px; transition: 0.3s; }
+.detail-card:hover { border-color: var(--accent); box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
+.detail-card i { font-size: 32px; color: var(--primary); background: rgba(15,16,35,0.05); width: 60px; height: 60px; display: flex; align-items: center; justify-content: center; border-radius: 12px; margin-bottom: 25px; }
+.detail-card h3 { font-size: 24px; margin-bottom: 20px; font-family: 'Bebas Neue'; letter-spacing: 1px; }
+.detail-list { list-style: none; padding: 0; }
+.detail-list li { margin-bottom: 12px; padding-left: 25px; position: relative; font-size: 15px; color: #555; }
+.detail-list li::before { content: '\f00c'; font-family: 'Font Awesome 5 Free'; font-weight: 900; position: absolute; left: 0; color: var(--whatsapp); font-size: 14px; }
+
+/* ===== FOOTER ===== */
+footer{ background:#050508; color:#6b7280; padding:40px 0; text-align:center; font-size:14px; border-top: 1px solid #1a1a1a; }
+
+/* ===== WHATSAPP FLOAT ===== */
+.whatsapp-float {
+    position: fixed; width: 65px; height: 65px; bottom: 30px; right: 30px;
+    background-color: var(--whatsapp); color: #FFF; border-radius: 50px;
+    text-align: center; font-size: 34px; box-shadow: 0 4px 25px rgba(37, 211, 102, 0.4);
+    z-index: 10000; display: flex; align-items: center; justify-content: center;
+    transition: all 0.3s ease; text-decoration: none; animation: pulse 2s infinite;
+}
+@keyframes pulse {
+    0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
+    70% { box-shadow: 0 0 0 20px rgba(37, 211, 102, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+    .header-inner .btn { display: none; }
+    .hero { padding-top: 100px; }
+    .hero-grid{ grid-template-columns:1fr; text-align:center; gap: 50px; }
+    .hero p { margin: 0 auto 30px auto; }
+    .price-flash { justify-content: center; }
+    .hero-actions{ justify-content:center; flex-direction: column; }
+    .btn { width: 100%; justify-content: center; }
+    .hero-phone img { max-width: 280px; transform: rotate(0); margin: 0 auto; }
+    .details-grid { grid-template-columns: 1fr; }
+}
+</style>
 </head>
+
 <body>
 
-    <div id="dragWhatsapp" class="btn-whatsapp-float" title="Contactez-nous sur WhatsApp">
-        <a href="https://wa.me/212652084735" target="_blank" onclick="fbq('track', 'Contact');" style="display:flex; width:100%; height:100%; align-items:center; justify-content:center; color:white;" aria-label="Contacter par WhatsApp">
-            <i class="fab fa-whatsapp"></i>
-        </a>
+<header>
+<div class="container header-inner">
+    <a class="logo" href="#">
+        <img src="icon_1.png" alt="Stylionix Logo"> STYLIONIX
+    </a>
+    <a href="https://wa.me/212652084735?text=Je%20veux%20l'acc%C3%A8s%20%C3%A0%20Stylionix.%20Voici%20mon%20Gmail%20%3A" target="_blank" class="header-cta" onclick="trackProLead()">
+        <i class="fab fa-whatsapp"></i> Get Access
+    </a>
+</div>
+</header>
+
+<section class="hero">
+<div class="container hero-grid">
+    <div>
+        <span class="badge-private">🔒 Private Access • 7 Days Free</span>
+        <h1>Stop paying monthly. <br>Get your Lifetime License.</h1>
+        <p>Stylionix is in <strong>Private Access</strong> on Google Play. Try it free for 7 days, then pay once forever.</p>
+        
+        <div class="price-flash">
+            <span class="old-price">$40</span>
+            <span class="new-price">$15</span>
+            <span class="price-label">Lifetime License<br><small>One-time payment</small></span>
+        </div>
+
+        <div class="access-box">
+            <h4><i class="fas fa-key"></i> How to download?</h4>
+            <div>1. Send your <strong>Gmail address</strong> to us for authorization.</div>
+            <div>2. Download securely from Google Play Store.</div>
+            <div>3. Enjoy <strong>7 Days Free Trial</strong> (No credit card needed).</div>
+        </div>
+
+        <div class="hero-actions">
+            <a href="https://wa.me/212652084735?text=Bonjour%2C%20je%20suis%20int%C3%A9ress%C3%A9%20par%20votre%20application%20Stylionix.%20Voici%20mon%20Gmail%20pour%20l'autorisation%20%3A%20" target="_blank" class="btn btn-whatsapp" onclick="trackProLead()">
+                <i class="fab fa-whatsapp"></i> Send Gmail & Get Free Trial
+            </a>
+            
+            <a href="mailto:sastoukadigital@gmail.com?subject=Stylionix%20Access&body=Hello%2C%20I%20want%20to%20try%20Stylionix%20(7%20Days%20Free).%20My%20Gmail%20is%3A%20" class="btn btn-gmail" onclick="trackProLead()">
+                <i class="fas fa-envelope"></i> Send via Email
+            </a>
+            
+            <a href="https://play.google.com/store/apps/details?id=com.sastoukadigital.stylionix" target="_blank" class="btn btn-playstore">
+                <i class="fab fa-google-play"></i> Télécharger sur Google Play
+            </a>
+        </div>
     </div>
 
-    <div id="dragDownloads" class="floating-downloads">
-        <a href="EasyMedicaLink-Win64.zip" onclick="forceDownload(event, 'EasyMedicaLink-Win64.zip')" class="btn-float" title="Télécharger la version 64 bits">
-            <i class="fab fa-windows"></i>
-            <span>Télécharger</span>
-            <span class="arch-badge">64bit</span>
-        </a>
-        <a href="EasyMedicaLink-Win32.zip" onclick="forceDownload(event, 'EasyMedicaLink-Win32.zip')" class="btn-float" title="Télécharger la version 32 bits">
-            <i class="fab fa-windows"></i>
-            <span>Télécharger</span>
-            <span class="arch-badge">32bit</span>
-        </a>
+    <div class="hero-phone">
+        <img src="10.jpg" alt="Stylionix App Interface">
     </div>
+</div>
+</section>
 
-    <header>
-        <nav class="navbar">
-            <div class="logo">
-                <i class="fas fa-heartbeat"></i> 
-                EasyMedicaLink
-            </div>
-        </nav>
-    </header>
-
-    <section class="hero">
-        <div class="hero-container">
-            <h1>Le Hub Central de votre Activité Médicale</h1>
-            <p class="hero-desc">Un écosystème complet : de la prise de RDV à la comptabilité, en passant par l'IA médicale. Gérez vos patients, stocks et finances sur une seule interface locale et sécurisée.</p>
-            
-            <div class="download-group">
-                <a href="EasyMedicaLink-Win64.zip" onclick="forceDownload(event, 'EasyMedicaLink-Win64.zip')" class="btn-primary">
-                    <i class="fab fa-windows"></i> Télécharger EasyMedicaLink <span class="arch-badge">x64</span>
-                </a>
-                <a href="EasyMedicaLink-Win32.zip" onclick="forceDownload(event, 'EasyMedicaLink-Win32.zip')" class="btn-secondary">
-                    <i class="fab fa-windows"></i> Version <span class="arch-badge">x32</span>
-                </a>
-            </div>
-
-            <div class="browser-info-box">
-                <span class="firefox-txt">
-                    <i class="fab fa-firefox-browser"></i> Recommandé : Téléchargement direct sans blocage sur <strong>Firefox</strong>.
-                </span>
-                <span class="chrome-txt">
-                    <i class="fab fa-chrome"></i> <strong>Chrome / Edge :</strong> Si le téléchargement est bloqué, faites <strong>Clic Droit > "Enregistrer le lien sous..."</strong>
-                </span>
-            </div>
-
-            <div class="hero-image-wrapper">
-                <span class="doc-label"><i class="fas fa-print"></i> Documents Professionnels Générés (Scroll horizontal)</span>
-                <div class="doc-scroll-container">
-                    <div class="doc-item" title="Reçu de Paiement">
-                        <img src="recu.png" alt="Reçu de Paiement Médical">
-                    </div>
-                    <div class="doc-item" title="Ordonnance Médicale">
-                        <img src="ordonnance.png" alt="Ordonnance Médicale avec QR">
-                    </div>
-                    <div class="doc-item" title="Certificat Médical">
-                        <img src="certificat.png" alt="Certificat Médical">
-                    </div>
-                    <div class="doc-item" title="Facture">
-                        <img src="facture.png" alt="Facture Détaillée">
-                    </div>
-                    <div class="doc-item" title="Demande d'Analyse">
-                        <img src="analyse.png" alt="Demande d'Analyses Biologiques">
-                    </div>
-                    <div class="doc-item" title="Demande de Radiologie">
-                        <img src="radiologie.png" alt="Demande de Radiologie">
-                    </div>
-                    <div class="doc-item" title="Historique Consultation">
-                        <img src="historique.png" alt="Historique Patient Complet">
-                    </div>
-                </div>
-            </div>
-            <div class="module-list">
-                <span class="module-tag"><i class="fas fa-calendar-check"></i> RDV &amp; Salle d'attente</span>
-                <span class="module-tag"><i class="fas fa-stethoscope"></i> Consultation</span>
-                <span class="module-tag"><i class="fas fa-users"></i> Patients</span>
-                <span class="module-tag"><i class="fas fa-flask"></i> Biologie</span>
-                <span class="module-tag"><i class="fas fa-x-ray"></i> Radiologie</span>
-                <span class="module-tag"><i class="fas fa-prescription-bottle-alt"></i> Pharmacie &amp; Stock</span>
-                <span class="module-tag"><i class="fas fa-file-invoice-dollar"></i> Facturation</span>
-                <span class="module-tag"><i class="fas fa-calculator"></i> Comptabilité &amp; Paie</span>
-                <span class="module-tag"><i class="fas fa-chart-pie"></i> Statistiques</span>
-                <span class="module-tag" style="background: linear-gradient(135deg, #f3e5f5 0%, #e9d8fd 100%); border-color: #d6bcfa; color: #6f42c1;">
-                    <i class="fas fa-robot"></i> <strong>Assistant IA (Synapse)</strong>
-                </span>
-            </div>
+<section class="features">
+<div class="container">
+    <div class="section-title">
+        <h2>Why Join the Private Access?</h2>
+        <p>Professional tools at an unbeatable one-time price.</p>
+    </div>
+    
+    <div class="features-grid">
+        <div class="feature">
+            <i class="fas fa-tag"></i>
+            <h3>Best Deal Ever</h3>
+            <p><strong>$15 Lifetime</strong> (Launch Offer). Normal price is $40. No monthly subscriptions, ever.</p>
         </div>
-    </section>
-
-    <section class="split-section alt">
-        <div class="split-container">
-            <div class="text-col">
-                <h2><i class="fas fa-shield-alt"></i> Authentification &amp; Réseau</h2>
-                <p>EasyMedicaLink combine la sécurité d'une base de données locale avec la flexibilité du réseau.</p>
-                <ul class="feature-check">
-                    <li><i class="fas fa-server"></i> <strong>Architecture Hybride :</strong> Installez sur 1 PC Windows (Serveur), accédez depuis n'importe où.</li>
-                    <li><i class="fas fa-users-cog"></i> <strong>Multi-Rôles :</strong> Admin, Médecin, Assistante, Comptable, Biologiste.</li>
-                    <li><i class="fas fa-key"></i> <strong>Licence Flexible :</strong> Essai 7 jours ou Illimité via ID machine.</li>
-                    <li><i class="fas fa-wifi"></i> <strong>Accès Local :</strong> Vos données restent chez vous, pas dans le Cloud.</li>
-                </ul>
-            </div>
-            <div class="img-col">
-                <img src="1-1.png" alt="Interface de Connexion Sécurisée">
-            </div>
+        <div class="feature">
+            <i class="fas fa-clock"></i>
+            <h3>7 Days Free Trial</h3>
+            <p>Test all premium features for free. No commitment, no credit card required to start.</p>
         </div>
-    </section>
-
-    <section class="network-section">
-        <div class="network-container">
-            <span class="network-badge"><i class="fas fa-project-diagram"></i> ARCHITECTURE RÉSEAU</span>
-            <h2>Accès Multi-Supports via Réseau Local</h2>
-            <p>Transformez votre PC Windows en serveur central. Connectez-vous depuis n'importe quel appareil sur le même réseau Wi-Fi.</p>
-            
-            <div class="network-diagram">
-                <div class="network-card">
-                    <i class="fab fa-apple"></i>
-                    <h4>Mac / MacBook</h4>
-                    <p>Accès complet via Safari ou Chrome sans installation.</p>
-                </div>
-                <div class="network-card main-server">
-                    <i class="fab fa-windows"></i>
-                    <h4>PC Windows</h4>
-                    <p><strong>SERVEUR CENTRAL</strong><br>Nécessite une installation sur PC Windows (Serveur).</p>
-                </div>
-                <div class="network-card">
-                    <i class="fas fa-tablet-alt"></i>
-                    <h4>Tablette & Mobile</h4>
-                    <p>iPad, Android, iPhone. Gérez la salle d'attente en mobilité.</p>
-                </div>
-            </div>
-            <p style="margin-top: 40px; font-size: 0.95rem; opacity: 0.9;">* Nécessite que tous les appareils soient connectés au même réseau Wi-Fi.</p>
+        <div class="feature">
+            <i class="fas fa-shield-alt"></i>
+            <h3>100% Private</h3>
+            <p>Your data stays on your phone. Secure backup to your own Google Drive or WhatsApp.</p>
         </div>
-    </section>
+    </div>
+</div>
+</section>
 
-    <section class="admin-section">
-        <h2><i class="fas fa-cogs"></i> Administration &amp; Configuration Complète</h2>
-        <div class="admin-grid">
-            <div class="admin-card">
-                <img src="2.png" alt="Tableau de bord Admin">
-                <h3><i class="fas fa-tachometer-alt"></i> Vue Générale</h3>
-                <ul>
-                    <li>État de la licence (Jours restants/Plan)</li>
-                    <li>Identité du cabinet et du médecin connecté</li>
-                    <li>Accès rapide à la sauvegarde et restauration</li>
-                </ul>
-            </div>
-            <div class="admin-card">
-                <img src="3.png" alt="Paramètres Clinique">
-                <h3><i class="fas fa-sliders-h"></i> Paramétrage Fin</h3>
-                <ul>
-                    <li><strong>Infos :</strong> Nom, Lieu, Devise (MAD, EUR...), TVA par défaut.</li>
-                    <li><strong>Visuel :</strong> Thème graphique, Logo pour documents PDF.</li>
-                    <li><strong>Horaires :</strong> Début/Fin de journée, intervalle des RDV.</li>
-                </ul>
-            </div>
-            <div class="admin-card">
-                <img src="4.png" alt="Listes Médicales">
-                <h3><i class="fas fa-book-medical"></i> Référentiels Médicaux</h3>
-                <ul>
-                    <li>Listes personnalisables pour les menus déroulants.</li>
-                    <li><strong>Médicaments :</strong> Nom et posologie par défaut.</li>
-                    <li><strong>Biologie &amp; Radio :</strong> Liste des examens prescriptibles.</li>
-                </ul>
-            </div>
-            <div class="admin-card">
-                <img src="5.png" alt="Portail Patient">
-                <h3><i class="fas fa-globe"></i> Portail Patient</h3>
-                <ul>
-                    <li>Génération de lien public &amp; <strong>QR Code</strong> pour prise de RDV.</li>
-                    <li>Gestion des jours fériés et indisponibilités.</li>
-                    <li>Configuration de l'interface patient externe.</li>
-                </ul>
-            </div>
-            <div class="admin-card">
-                <img src="6.png" alt="Gestion Utilisateurs">
-                <h3><i class="fas fa-users-cog"></i> Gestion d'Équipe</h3>
-                <ul>
-                    <li>Création de comptes (Nom, Tél, Rôle).</li>
-                    <li><strong>Permissions fines :</strong> Cochez module par module.</li>
-                    <li>Lien WhatsApp direct avec le personnel.</li>
-                </ul>
-            </div>
-            <div class="admin-card">
-                <img src="8.png" alt="Sauvegarde">
-                <h3><i class="fas fa-database"></i> Sécurité des Données</h3>
-                <ul>
-                    <li>Export complet de la base de données (Excel).</li>
-                    <li>Restauration système en cas de changement de PC.</li>
-                    <li>Téléchargement de la version Desktop (Win64/32).</li>
-                </ul>
-            </div>
+<section class="gallery">
+<div class="container">
+    <div class="section-title">
+        <h2>Interface Gallery</h2>
+        <p style="color:rgba(255,255,255,0.6)">Clean, Dark Mode, and Easy to use.</p>
+    </div>
+    <div class="gallery-grid">
+        <div class="gallery-item"><img src="10.jpg" alt="Home"></div>
+        <div class="gallery-item"><img src="13.jpg" alt="Finance"></div>
+        <div class="gallery-item"><img src="9.jpg" alt="Agenda"></div>
+        <div class="gallery-item"><img src="8.jpg" alt="Settings"></div>
+        <div class="gallery-item"><img src="6.jpg" alt="Menu"></div>
+        <div class="gallery-item"><img src="11.jpg" alt="Stats"></div>
+    </div>
+</div>
+</section>
+
+<section class="deep-details">
+    <div class="container">
+        <div class="section-title">
+            <h2>Complete Feature Breakdown</h2>
+            <p>Everything you need to run your business like a Pro.</p>
         </div>
-    </section>
 
-    <section class="split-section">
-        <div class="split-container reverse">
-            <div class="text-col">
-                <h2>Gestion des Rendez-vous &amp; Patients</h2>
-                <p>Un flux de travail optimisé pour l'assistante et le médecin, synchronisé en temps réel.</p>
-                <ul class="feature-check">
-                    <li><i class="fas fa-calendar-alt"></i> <strong>Planification :</strong> Vue journalière, filtres par date/médecin.</li>
-                    <li><i class="fas fa-user-clock"></i> <strong>Salle d'attente :</strong> Gestion du statut "En attente", "En consultation".</li>
-                    <li><i class="fab fa-whatsapp"></i> <strong>Communication :</strong> Envoi de rappels WhatsApp en un clic.</li>
-                    <li><i class="fas fa-id-badge"></i> <strong>Badges :</strong> Génération automatique de badges patients avec QR.</li>
+        <div class="details-grid">
+            <div class="detail-card">
+                <i class="fas fa-chart-pie"></i>
+                <h3>Advanced Financials</h3>
+                <ul class="detail-list">
+                    <li><strong>Real-time Revenue:</strong> See how much you earned today, this month, or this year.</li>
+                    <li><strong>Expense Tracking:</strong> Log rent, electricity, and product costs in seconds.</li>
+                    <li><strong>Net Profit Calculation:</strong> Automatically calculates Revenue - Expenses = Profit.</li>
+                    <li><strong>Visual Charts:</strong> Beautiful bar and pie charts to understand your data.</li>
+                    <li><strong>Revenue by Stylist:</strong> See who is the best performer in your team.</li>
                 </ul>
             </div>
-            <div class="img-col">
-                <img src="9.png" alt="Interface de Gestion des Rendez-vous">
-            </div>
-        </div>
-    </section>
 
-    <section class="features-grid-section">
-        <div class="section-header">
-            <h2>Cœur Médical &amp; Innovation</h2>
-            <p>Des outils spécialisés pour chaque aspect du soin, assistés par l'intelligence artificielle.</p>
-        </div>
-        <div class="features-grid">
-            <div class="feature-card">
-                <div class="icon-box consult-icon"><i class="fas fa-stethoscope"></i></div>
-                <h3 class="card-title">Consultation Avancée</h3>
-                <p class="card-text">Saisie complète : constantes (Tension, Temp, FC), diagnostic et ordonnances. Génération automatique de certificats et impression PDF.</p>
-            </div>
-            <div class="feature-card">
-                <div class="icon-box ia-icon"><i class="fas fa-robot"></i></div>
-                <h3 class="card-title">Assistant IA (Synapse)</h3>
-                <p class="card-text">Un assistant médical intelligent pour l'aide à la décision. Posez des questions complexes et analysez des documents importés.</p>
-            </div>
-            <div class="feature-card">
-                <div class="icon-box bio-icon"><i class="fas fa-flask"></i></div>
-                <h3 class="card-title">Biologie &amp; Imagerie</h3>
-                <p class="card-text">Prescription et suivi des résultats. Importation des PDF de résultats labo/radio et intégration automatique.</p>
-            </div>
-            <div class="feature-card">
-                <div class="icon-box pharma-icon"><i class="fas fa-boxes"></i></div>
-                <h3 class="card-title">Stock &amp; Pharmacie</h3>
-                <p class="card-text">Gestion rigoureuse de l'inventaire. Suivi des péremptions, alertes de stock bas, calcul des marges.</p>
-            </div>
-            <div class="feature-card">
-                <div class="icon-box stats-icon"><i class="fas fa-chart-line"></i></div>
-                <h3 class="card-title">Analytique &amp; Stats</h3>
-                <p class="card-text">Tableaux de bord dynamiques : Analyse des recettes par acte, fréquentation patients, évolution du CA.</p>
-            </div>
-        </div>
-    </section>
-
-    <section class="split-section alt">
-        <div class="split-container">
-            <div class="text-col">
-                <h2>Gestion Financière &amp; Comptable</h2>
-                <p>Au-delà de la simple facture, une véritable comptabilité de clinique intégrée.</p>
-                <ul class="feature-check">
-                    <li><i class="fas fa-file-invoice-dollar"></i> <strong>Facturation :</strong> Services prédéfinis, calcul auto TVA, devises.</li>
-                    <li><i class="fas fa-wallet"></i> <strong>Paiements :</strong> Suivi des statuts (Payé/Impayé), acomptes, reçus.</li>
-                    <li><i class="fas fa-money-check-alt"></i> <strong>Dépenses :</strong> Enregistrement des charges et achats stock.</li>
-                    <li><i class="fas fa-hand-holding-usd"></i> <strong>Salaires :</strong> Gestion de la paie du personnel.</li>
+            <div class="detail-card">
+                <i class="fas fa-calendar-alt"></i>
+                <h3>Smart Management</h3>
+                <ul class="detail-list">
+                    <li><strong>Conflict-Free Agenda:</strong> The app prevents double-booking for the same stylist.</li>
+                    <li><strong>Team Management:</strong> Add unlimited Stylists or Barbers.</li>
+                    <li><strong>Service Menu:</strong> Customize your services, prices, and duration (e.g., Fade Cut, 30min, $20).</li>
+                    <li><strong>Client History:</strong> Keep track of paid and unpaid appointments.</li>
+                    <li><strong>Drag & Drop Button:</strong> The booking button moves where you want it.</li>
                 </ul>
             </div>
-            <div class="img-col">
-                <img src="7.png" alt="Facturation et Comptabilité">
-            </div>
-        </div>
-    </section>
 
-    <footer>
-        <div style="max-width: 900px; margin: 0 auto;">
-            <div style="border-bottom: 1px solid rgba(255,255,255,0.15); padding-bottom: 2rem; margin-bottom: 2rem;">
-                <h4 style="width: 100%; color: #fff; margin-bottom: 20px; font-size: 1.4rem;">Télécharger l'application Desktop (ZIP)</h4>
-                <div style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;">
-                    <a href="EasyMedicaLink-Win64.zip" onclick="forceDownload(event, 'EasyMedicaLink-Win64.zip')" class="btn-primary">
-                        <i class="fab fa-windows"></i> Version <span class="arch-badge">x64</span>
-                    </a>
-                    <a href="EasyMedicaLink-Win32.zip" onclick="forceDownload(event, 'EasyMedicaLink-Win32.zip')" class="btn-secondary" style="color:white; border-color:white;">
-                        <i class="fab fa-windows"></i> Version <span class="arch-badge">x32</span>
-                    </a>
-                </div>
-            </div>
-
-            <div style="margin: 30px 0; font-size: 1rem;">
-                <a href="#" onclick="openModal('privacyModal', event)" style="margin-right: 25px;"><i class="fas fa-shield-alt"></i> Politique de Confidentialité</a>
-                <a href="#" onclick="openModal('termsModal', event)"><i class="fas fa-file-contract"></i> Conditions Générales d'Utilisation (CGU)</a>
-            </div>
-
-            <p style="margin-bottom: 20px; font-size: 1.3rem; color: #fff;">
-                <i class="fas fa-heartbeat" style="color: var(--accent-teal);"></i> <strong>EasyMedicaLink</strong>
-            </p>
-            <p style="font-size: 1.1rem; margin-bottom: 20px;">La solution complète pour la gestion moderne de votre cabinet médical.</p>
-            <p style="margin-top: 30px; font-size: 0.9rem; color: #cbd5e0;">
-                © 2025 SASTOUKA DIGITAL. Tous droits réservés. <br>
-                <i class="fas fa-envelope"></i> Support : sastoukadigital@gmail.com | 
-                <i class="fas fa-phone"></i> Tel : +212652084735
-            </p>
-        </div>
-    </footer>
-
-    <div id="privacyModal" class="modal-overlay" onclick="closeModal('privacyModal')">
-        <div class="modal-content" onclick="event.stopPropagation()">
-            <div class="modal-header">
-                <h2>Politique de Confidentialité</h2>
-                <span class="modal-close" onclick="closeModal('privacyModal')"><i class="fas fa-times"></i></span>
-            </div>
-            <div class="modal-body">
-                <p class="last-update" style="color:#666; font-size:0.9rem; margin-bottom:20px; border-bottom:1px solid #eee; padding-bottom:10px;">Dernière mise à jour : 23 Décembre 2025</p>
-                
-                <div class="highlight-box">
-                    <strong><i class="fas fa-shield-alt"></i> Architecture Locale</strong><br>
-                    EasyMedicaLink est un logiciel "Desktop" (Bureau). Toutes les données médicales sont <strong>stockées localement sur votre ordinateur</strong>. Nous n'avons aucun accès à votre base de données.
-                </div>
-
-                <h3>1. Collecte des Données</h3>
-                <p><strong>A. Via le Site Web :</strong> Données analytiques anonymes (cookies) et votre contact si vous nous écrivez.</p>
-                <p><strong>B. Via le Logiciel :</strong> Aucune donnée médicale n'est remontée vers nos serveurs.</p>
-
-                <h3>2. Utilisation (Conformité Facebook/Meta)</h3>
-                <ul>
-                    <li>Nous utilisons les publicités Facebook uniquement pour promouvoir le logiciel.</li>
-                    <li>Nous ne vendons ni ne louons vos données de contact à des tiers.</li>
+            <div class="detail-card">
+                <i class="fas fa-server"></i>
+                <h3>Security & Tech</h3>
+                <ul class="detail-list">
+                    <li><strong>100% Offline Capable:</strong> Works perfectly without internet connection.</li>
+                    <li><strong>Backup & Restore:</strong> Export your full database to a JSON file.</li>
+                    <li><strong>Share Data:</strong> Send your backup via WhatsApp or Email for safety.</li>
+                    <li><strong>Private by Design:</strong> We do not sell your data. It stays on your device.</li>
+                    <li><strong>Lightweight App:</strong> Optimized for Android, consumes very little battery.</li>
                 </ul>
+            </div>
 
-                <h3>3. Suppression des Données</h3>
-                <p>Vous pouvez demander la suppression de vos informations commerciales en nous contactant :</p>
-                <ul>
-                    <li>Email : sastoukadigital@gmail.com</li>
-                    <li>WhatsApp : +212 652 084 735</li>
+            <div class="detail-card">
+                <i class="fas fa-paint-brush"></i>
+                <h3>Dual Mode & Style</h3>
+                <ul class="detail-list">
+                    <li><strong>Dual Space:</strong> Switch between "Men's Barber" and "Women's Salon" modes instantly.</li>
+                    <li><strong>8 Premium Themes:</strong> Midnight Blue, Vintage Barber, Royal Magenta, Gold Luxury...</li>
+                    <li><strong>6 Languages:</strong> English, French, Arabic, Spanish, Chinese, Hindi.</li>
+                    <li><strong>Custom Currency:</strong> Supports USD, EUR, MAD (Dirham), and any symbol.</li>
+                    <li><strong>Your Salon Name:</strong> Display your own brand name on the dashboard.</li>
                 </ul>
             </div>
         </div>
     </div>
+</section>
 
-    <div id="termsModal" class="modal-overlay" onclick="closeModal('termsModal')">
-        <div class="modal-content" onclick="event.stopPropagation()">
-            <div class="modal-header">
-                <h2>Conditions Générales d'Utilisation (CGU)</h2>
-                <span class="modal-close" onclick="closeModal('termsModal')"><i class="fas fa-times"></i></span>
-            </div>
-            <div class="modal-body">
-                <p class="last-update" style="color:#666; font-size:0.9rem; margin-bottom:20px; border-bottom:1px solid #eee; padding-bottom:10px;">Dernière mise à jour : 23 Décembre 2025</p>
-                
-                <div class="highlight-box warning">
-                    <strong><i class="fas fa-exclamation-triangle"></i> Licence Logicielle</strong><br>
-                    L'utilisation d'EasyMedicaLink est soumise à l'acceptation de ces conditions.
-                </div>
+<footer>
+<div class="container">
+    <p>© 2025 STYLIONIX by SastoukaDigital.<br>Email: sastoukadigital@gmail.com</p>
+</div>
+</footer>
 
-                <h3>1. Licence d'Utilisation</h3>
-                <p>EasyMedicaLink vous concède une licence non exclusive, personnelle et non transférable pour utiliser le logiciel au sein de votre cabinet médical.</p>
+<a href="https://wa.me/212652084735?text=Bonjour%2C%20je%20suis%20int%C3%A9ress%C3%A9%20par%20votre%20application%20Stylionix.%20Voici%20mon%20Gmail%20pour%20l'autorisation%20%3A%20" class="whatsapp-float" target="_blank" title="Claim Offer" onclick="trackProLead()">
+    <i class="fab fa-whatsapp"></i>
+</a>
 
-                <h3>2. Responsabilité &amp; Sauvegardes</h3>
-                <p>En tant qu'utilisateur administrateur, vous êtes <strong>seul responsable</strong> de la sécurité de votre matériel informatique et de la réalisation régulière des sauvegardes de vos données.</p>
-
-                <h3>3. Avertissement Médical</h3>
-                <p>Le module "Assistant IA" est un outil d'aide à la décision. Il ne remplace en aucun cas le jugement clinique du professionnel de santé.</p>
-            </div>
-        </div>
-    </div>
-
-    <script>
-        // --- LOGIQUE DE TÉLÉCHARGEMENT (AVEC TRACKING) ---
-        function forceDownload(event, fileName) {
-            event.preventDefault();
-
-            // Vérifie si on est en train de déplacer l'élément (drag)
-            const btn = event.currentTarget.closest('.floating-downloads');
-            if(btn && btn.getAttribute('data-dragging') === 'true') {
-                return;
-            }
-
-            console.log("Tentative de téléchargement : " + fileName);
-            
-            // TRACKING FACEBOOK PIXEL
-            if (typeof fbq === 'function') {
-                fbq('track', 'Lead', {content_name: fileName});
-            }
-
-            setTimeout(function() {
-               window.location.href = fileName;
-            }, 100);
-        }
-
-        // --- LOGIQUE MODALES ---
-        function openModal(modalId, e) {
-            if(e) e.preventDefault();
-            document.getElementById(modalId).style.display = 'flex';
-        }
-
-        function closeModal(modalId) {
-            document.getElementById(modalId).style.display = 'none';
-        }
-
-        // --- LOGIQUE DRAG & DROP ---
-        function makeDraggable(elementId) {
-            const elmnt = document.getElementById(elementId);
-            let pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
-            let isDragging = false;
-
-            elmnt.onmousedown = dragMouseDown;
-            elmnt.addEventListener('touchstart', dragMouseDown, {passive: false});
-
-            function dragMouseDown(e) {
-                const evt = e.type === 'touchstart' ? e.touches[0] : e;
-                pos3 = evt.clientX;
-                pos4 = evt.clientY;
-                isDragging = false; 
-
-                document.onmouseup = closeDragElement;
-                document.onmousemove = elementDrag;
-                document.addEventListener('touchend', closeDragElement);
-                document.addEventListener('touchmove', elementDrag, {passive: false});
-            }
-
-            function elementDrag(e) {
-                const evt = e.type === 'touchmove' ? e.touches[0] : e;
-                if(!isDragging) {
-                    isDragging = true;
-                    elmnt.setAttribute('data-dragging', 'true');
-                }
-                if(e.cancelable) e.preventDefault();
-
-                pos1 = pos3 - evt.clientX;
-                pos2 = pos4 - evt.clientY;
-                pos3 = evt.clientX;
-                pos4 = evt.clientY;
-
-                let newTop = (elmnt.offsetTop - pos2);
-                let newLeft = (elmnt.offsetLeft - pos1);
-
-                elmnt.style.top = newTop + "px";
-                elmnt.style.left = newLeft + "px";
-                elmnt.style.bottom = 'auto';
-                elmnt.style.right = 'auto';
-            }
-
-            function closeDragElement() {
-                document.onmouseup = null;
-                document.onmousemove = null;
-                document.removeEventListener('touchend', closeDragElement);
-                document.removeEventListener('touchmove', elementDrag);
-                setTimeout(() => { elmnt.setAttribute('data-dragging', 'false'); }, 100);
-            }
-        }
-
-        document.addEventListener('DOMContentLoaded', () => {
-            makeDraggable("dragWhatsapp");
-            makeDraggable("dragDownloads");
-            
-            // Ajouter des animations aux éléments au chargement
-            const animatedElements = document.querySelectorAll('.hero-container, .network-card, .admin-card, .feature-card');
-            animatedElements.forEach((el, index) => {
-                el.style.opacity = '0';
-                el.style.transform = 'translateY(20px)';
-                setTimeout(() => {
-                    el.style.transition = 'all 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
-                    el.style.opacity = '1';
-                    el.style.transform = 'translateY(0)';
-                }, index * 100);
-            });
-        });
-    </script>
 </body>
 </html>
