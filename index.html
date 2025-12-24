@@ -25,19 +25,16 @@
   s.parentNode.insertBefore(t,s)}(window, document,'script',
   'https://connect.facebook.net/en_US/fbevents.js');
   
-  // VOTRE ID EST INTÉGRÉ ICI
-  fbq('init', '2428524580896182'); 
+  // ⚠️ REMPLACEZ 'VOTRE_ID_PIXEL_ICI' PAR VOTRE VRAI ID
+  fbq('init', '1249326203909805'); 
   
-  // On signale une "Vue de Page" à Facebook
   fbq('track', 'PageView');
 
-  // FONCTION SPÉCIALE : Ne déclenche le "Lead" que si c'est Android
   function trackProLead() {
       var ua = navigator.userAgent.toLowerCase();
       var isAndroid = ua.indexOf("android") > -1;
       
       if(isAndroid) {
-          // C'est un Android : On envoie le signal "Lead Pro" à Facebook
           fbq('track', 'Lead', {
               content_name: 'Salon License Request',
               content_category: 'Professional Software',
@@ -45,16 +42,15 @@
               currency: 'USD',
               user_device: 'Android' 
           });
-          console.log("Pixel Fired: Professional Android Lead sent to ID 2428524580896182");
+          console.log("Pixel Fired: Professional Android Lead");
       } else {
-          // Ce n'est pas un Android : On ne signale pas la conversion pour économiser le budget pub
-          console.log("Pixel Skipped: Not Android (Algo optimization)");
+          console.log("Pixel Skipped: Not Android");
       }
       return true; 
   }
 </script>
 <noscript><img height="1" width="1" style="display:none"
-  src="https://www.facebook.com/tr?id=2428524580896182&ev=PageView&noscript=1"
+  src="https://www.facebook.com/tr?id=VOTRE_ID_PIXEL_ICI&ev=PageView&noscript=1"
 /></noscript>
 <style>
 :root{
@@ -306,9 +302,6 @@ header{
 .detail-list li { margin-bottom: 12px; padding-left: 25px; position: relative; font-size: 15px; color: #555; }
 .detail-list li::before { content: '\f00c'; font-family: 'Font Awesome 5 Free'; font-weight: 900; position: absolute; left: 0; color: var(--whatsapp); font-size: 14px; }
 
-/* ===== FOOTER ===== */
-footer{ background:#050508; color:#6b7280; padding:40px 0; text-align:center; font-size:14px; border-top: 1px solid #1a1a1a; }
-
 /* ===== WHATSAPP FLOAT ===== */
 .whatsapp-float {
     position: fixed; width: 65px; height: 65px; bottom: 30px; right: 30px;
@@ -322,6 +315,40 @@ footer{ background:#050508; color:#6b7280; padding:40px 0; text-align:center; fo
     70% { box-shadow: 0 0 0 20px rgba(37, 211, 102, 0); }
     100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
 }
+
+/* ===== LEGAL FOOTER & MODALS (New for Meta Compliance) ===== */
+footer{
+    background:#050508;
+    color:#6b7280;
+    padding:60px 0 40px;
+    text-align:center;
+    font-size:12px;
+    border-top: 1px solid #1a1a1a;
+}
+.footer-links { margin-bottom: 20px; }
+.footer-links a { color: #888; text-decoration: none; margin: 0 10px; font-weight: 600; transition: 0.3s; }
+.footer-links a:hover { color: #fff; }
+.legal-disclaimer { max-width: 800px; margin: 0 auto 20px auto; line-height: 1.5; opacity: 0.7; font-size: 11px; }
+
+/* Modals */
+.modal {
+    display: none; position: fixed; z-index: 10001; left: 0; top: 0;
+    width: 100%; height: 100%; overflow: auto; background-color: rgba(0,0,0,0.8);
+    backdrop-filter: blur(5px);
+}
+.modal-content {
+    background-color: #fff; margin: 5% auto; padding: 40px; border: 1px solid #888;
+    width: 90%; max-width: 800px; border-radius: 12px; color: #333; position: relative;
+    max-height: 80vh; overflow-y: auto;
+}
+.close {
+    color: #aaa; float: right; font-size: 28px; font-weight: bold; cursor: pointer;
+    position: absolute; right: 20px; top: 15px;
+}
+.close:hover, .close:focus { color: black; text-decoration: none; cursor: pointer; }
+.modal-body h2 { color: var(--primary); margin-top: 0; }
+.modal-body h4 { color: var(--accent); margin-top: 20px; margin-bottom: 10px; }
+.modal-body p, .modal-body ul { font-size: 14px; line-height: 1.6; color: #555; }
 
 /* RESPONSIVE */
 @media(max-width:900px){
@@ -496,14 +523,99 @@ footer{ background:#050508; color:#6b7280; padding:40px 0; text-align:center; fo
 </section>
 
 <footer>
-<div class="container">
-    <p>© 2025 STYLIONIX by SastoukaDigital.<br>Email: sastoukadigital@gmail.com</p>
-</div>
+    <div class="container">
+        <div class="footer-links">
+            <a href="#" onclick="openModal('privacyModal'); return false;">Privacy Policy</a> | 
+            <a href="#" onclick="openModal('termsModal'); return false;">Terms & Conditions</a> | 
+            <a href="mailto:sastoukadigital@gmail.com">Contact Us</a>
+        </div>
+
+        <div class="legal-disclaimer">
+            <p>
+                This site is not a part of the Facebook website or Facebook Inc. Additionally, This site is NOT endorsed by Facebook in any way. FACEBOOK is a trademark of FACEBOOK, Inc.
+            </p>
+            <p>
+                The results mentioned on this site are personal. We do not guarantee that you will get the same results. Your results will depend on your dedication, your experience, and your work.
+            </p>
+        </div>
+
+        <p>© 2025 STYLIONIX by SastoukaDigital. All rights reserved.</p>
+    </div>
 </footer>
 
 <a href="https://wa.me/212652084735?text=Bonjour%2C%20je%20suis%20int%C3%A9ress%C3%A9%20par%20votre%20application%20Stylionix.%20Voici%20mon%20Gmail%20pour%20l'autorisation%20%3A%20" class="whatsapp-float" target="_blank" title="Claim Offer" onclick="trackProLead()">
     <i class="fab fa-whatsapp"></i>
 </a>
+
+<div id="privacyModal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal('privacyModal')">&times;</span>
+    <div class="modal-body">
+        <h2>Privacy Policy</h2>
+        <p><strong>Last Updated: January 2025</strong></p>
+        
+        <h4>1. Information We Collect</h4>
+        <p>We respect your privacy. Stylionix is designed to work offline. The only information we collect is:</p>
+        <ul>
+            <li><strong>Contact Information:</strong> When you contact us via WhatsApp or Email (e.g., your Gmail address for authorization), we store this solely to grant you access to the application.</li>
+            <li><strong>Usage Data:</strong> We may use basic analytics (like Google Play Console stats) to understand crash reports or download numbers.</li>
+        </ul>
+
+        <h4>2. Data Storage</h4>
+        <p>Your business data (clients, revenue, appointments) is stored <strong>locally on your device</strong>. We do not have access to your database. You are responsible for backing up your data using the "Backup" feature in the app.</p>
+
+        <h4>3. Third-Party Services</h4>
+        <p>We use Google Play Services for app distribution. We may use Facebook Pixel on our website to track ad performance.</p>
+
+        <h4>4. Contact</h4>
+        <p>For any privacy questions, please contact: sastoukadigital@gmail.com</p>
+    </div>
+  </div>
+</div>
+
+<div id="termsModal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal('termsModal')">&times;</span>
+    <div class="modal-body">
+        <h2>Terms & Conditions</h2>
+        
+        <h4>1. License</h4>
+        <p>By downloading Stylionix, you are granted a non-exclusive, non-transferable license to use the application for your professional activity. The "Lifetime License" refers to the lifespan of the application version purchased.</p>
+
+        <h4>2. Payments & Refunds</h4>
+        <p>We offer a 7-day free trial. After the trial, a one-time payment is required. Since you have a trial period to evaluate the software, refunds are generally not provided after the payment is made, unless required by local law.</p>
+
+        <h4>3. Disclaimer</h4>
+        <p>Stylionix is provided "as is". SastoukaDigital makes no warranties, expressed or implied, and hereby disclaims and negates all other warranties. We are not liable for any data loss resulting from device failure or failure to backup data.</p>
+        
+        <h4>4. Limitation of Liability</h4>
+        <p>In no event shall SastoukaDigital be liable for any damages (including, without limitation, damages for loss of data or profit) arising out of the use or inability to use the materials on Stylionix.</p>
+    </div>
+  </div>
+</div>
+
+<script>
+// Modal Logic
+function openModal(modalId) {
+    document.getElementById(modalId).style.display = "block";
+    // Disable body scroll when modal is open
+    document.body.style.overflow = "hidden";
+}
+
+function closeModal(modalId) {
+    document.getElementById(modalId).style.display = "none";
+    // Enable body scroll
+    document.body.style.overflow = "auto";
+}
+
+// Close modal if user clicks outside of it
+window.onclick = function(event) {
+    if (event.target.classList.contains('modal')) {
+        event.target.style.display = "none";
+        document.body.style.overflow = "auto";
+    }
+}
+</script>
 
 </body>
 </html>
