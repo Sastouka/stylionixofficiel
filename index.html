@@ -25,30 +25,23 @@
   s.parentNode.insertBefore(t,s)}(window, document,'script',
   'https://connect.facebook.net/en_US/fbevents.js');
   
-  // VOTRE ID
+  // INITIALISATION DU PIXEL
   fbq('init', '2428524580896182'); 
   
+  // SUIVI DE VUE DE PAGE (PAGEVIEW)
   fbq('track', 'PageView');
 
-  // FONCTION MISE À JOUR : Envoie "StartTrial" (Démarrage d'essai)
+  // FONCTION DE SUIVI PROSPECT (LEAD)
+  // Se déclenche au clic sur WhatsApp ou Email
   function trackProLead() {
-      var ua = navigator.userAgent.toLowerCase();
-      var isAndroid = ua.indexOf("android") > -1;
-      
-      if(isAndroid) {
-          // On envoie le signal "StartTrial" pour correspondre à votre Pub
-          fbq('track', 'StartTrial', {
-              content_name: '7 Days Free Trial', // Nom plus précis
-              content_category: 'Professional Software',
-              value: 0.00,       // Valeur 0 pour l'essai (ou 15.00 si vous préférez la valeur future)
-              currency: 'USD',
-              predicted_ltv: 15.00, // Valeur future estimée
-              user_device: 'Android' 
-          });
-          console.log("Pixel Fired: StartTrial (Android User)");
-      } else {
-          console.log("Pixel Skipped: Not Android");
-      }
+      fbq('track', 'Lead', {
+          content_name: 'Demande Acces Stylionix', 
+          content_category: 'App Access',
+          value: 0.00,       
+          currency: 'USD',
+          predicted_ltv: 15.00 // Valeur estimée du client
+      });
+      console.log("Pixel Fired: Lead generated");
       return true; 
   }
 </script>
